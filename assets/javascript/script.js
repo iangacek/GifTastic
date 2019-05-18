@@ -13,6 +13,14 @@ function renderButtons() {
 
 renderButtons();
 
+$("#add-animal").on("click", function(event){
+  event.preventDefault();
+  var animal = $("#animal-input").val().trim();
+  animals.push(animal);
+  renderButtons();
+})
+
+
 $("button").on("click", function () {
   var animal = $(this).attr("data-animal");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
