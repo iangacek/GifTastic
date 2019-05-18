@@ -4,7 +4,7 @@ function renderButtons() {
   $("#buttons-view").empty();
   for (var i = 0; i < animals.length; i++) {
     var a = $("<button class='btn btn-primary'>");
-    a.addClass("animals");
+    a.addClass("animal-btn");
     a.attr("data-animal", animals[i]);
     a.text(animals[i]);
     $("#buttons-view").append(a);
@@ -21,7 +21,7 @@ $("#add-animal").on("click", function(event){
 })
 
 
-$("button").on("click", function () {
+function displayAnimalInfo () {
   var animal = $(this).attr("data-animal");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     animal + "&api_key=qXmzGsZI4v039l2oVSrlHS3AJZAY0mDC&limit=10";
@@ -30,9 +30,6 @@ $("button").on("click", function () {
     method: "GET"
   })
     .then(function (response) {
-      console.log(queryURL);
-
-      console.log(response);
       var results = response.data;
       for (var i = 0; i < results.length; i++) {
         var animalDiv = $("<div>");
@@ -44,43 +41,6 @@ $("button").on("click", function () {
         $("#gifs-appear-here").prepend(animalDiv);
       }
     });
-});
+};
 
-// **CODE FROM IN-CLASS EXAMPLE, USE FOR REFERENCE/GUIDANCE**
-// 	var searchTerms = ['fox', 'cow', 'chicken', 'pig', 'lizard'];
-
-// 	var createButton = function (name) {
-// 		var button = $('<button>');
-// 		button.text(name);
-
-// 		button.click(function () {
-// 			gifQuery($(this).text());
-// 		});
-
-// 		$('.button-container').append(button);
-// 	}
-
-// 	var createButtonsFromArray = function (arr) {
-// 		for (var i = 0; i < arr.length; i++) {
-// 			createButton(arr[i]);
-// 		}
-// 	}
-
-// 	var gifQuery = function (term) {
-// 		var apiKey = "qXmzGsZI4v039l2oVSrlHS3AJZAY0mDC";
-// 		var queryURL = "http://api.giphy.com/v1/gifs/search?apiKey="
-// 			+ apiKey
-// 			+ "&q=" + term;
-
-// 		$.ajax({
-// 			method: "GET",
-// 			url: queryURL,
-// 		}).then(function (result) {
-// 			console.log(result);
-// 		});
-// 	}
-
-// 	gifQuery("cat");
-
-// 	createButtonsFromArray(searchTerms);
-// });
+$(document).on("click", ".animal-btn", displayAnimalInfo);
