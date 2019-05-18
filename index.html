@@ -14,11 +14,25 @@
 </head>
 
 <body>
-        <button data-animal="cat">meow</button>
-        <button data-animal="dog">woof</button>
-        <button data-animal="bird">chirp</button>
-        <div id="gifs-appear-here">
+    <div class="container">
+        <div class="row">
+            <div id="buttons-view"></div>
         </div>
+
+        <!-- GIFS appear here -->
+        <div class="row">
+            <div class="col-sm-9">
+                <div id="gifs-appear-here"></div>
+            </div>
+        <!-- Search box -->
+            <div class="col-sm-3">
+                <form id="searchBox">
+                    <input type="text" id="gifSearch">
+                    <input id="addSearchValue" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="assets/javascript/script.js"></script>
 
 </body>
