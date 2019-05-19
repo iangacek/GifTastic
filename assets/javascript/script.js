@@ -14,9 +14,9 @@ $(document).ready(function () {
       $("#buttons-view").append(a);
     }
   }
-
+  
   renderButtons();
-
+  
   // Adds additional buttons in search box
   $("#add-animal").on("click", function (event) {
     event.preventDefault();
@@ -25,6 +25,9 @@ $(document).ready(function () {
     animals.push(animal);
     renderButtons();
   })
+  
+  // Actions on buttons to display GIFs
+  $(document).on("click", ".animal-btn", displayAnimalInfo);
 
   // Displays GIFs
   function displayAnimalInfo() {
@@ -37,10 +40,11 @@ $(document).ready(function () {
     })
       .then(function (response) {
         var results = response.data;
-        // console.log(response.data);
+        console.log(response.data);
         for (var i = 0; i < results.length; i++) {
           var animalDiv = $("<div>");
           var p = $("<p>").text("Rating: " + results[i].rating);
+          var t = $("<p>").text("Title: " + results[i].title);
           var animalImage = $("<img>");
           // Attributes multiple URLs to GIFs for *hopeful* playback
           animalImage.attr("src", results[i].images.fixed_height_still.url);
@@ -49,6 +53,7 @@ $(document).ready(function () {
           animalImage.attr("data-state", "still");
           animalImage.attr("class", "gif");
           animalDiv.append(p);
+          animalDiv.append(t);
           animalDiv.append(animalImage);
           $("#gifs-appear-here").prepend(animalDiv);
         }
@@ -66,6 +71,4 @@ $(document).ready(function () {
       $(this).attr("data-state", "still");
     }
   });
-  // Actions on buttons to display GIFs
-  $(document).on("click", ".animal-btn", displayAnimalInfo);
 });
