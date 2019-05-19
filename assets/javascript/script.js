@@ -36,15 +36,15 @@ $(document).ready(function () {
     })
       .then(function (response) {
         var results = response.data;
-        console.log(response.data);
+        // console.log(response.data);
         for (var i = 0; i < results.length; i++) {
           var animalDiv = $("<div>");
           var p = $("<p>").text("Rating: " + results[i].rating);
           var animalImage = $("<img>");
           // Attributes multiple URLs to GIFs for *hopeful* playback
           animalImage.attr("src", results[i].images.fixed_height_still.url);
-          animalImage.attr("data-still", response.data[i].images.original_still.url);
-          animalImage.attr("data-animate", response.data[i].images.original.url);
+          animalImage.attr("data-still", response.data[i].images.fixed_height_still.url);
+          animalImage.attr("data-animate", response.data[i].images.fixed_height.url);
           animalImage.attr("data-state", "still");
           animalImage.attr("class", "gif");
           animalDiv.append(p);
@@ -55,7 +55,9 @@ $(document).ready(function () {
   };
 
   $(".gif").on("click", function () {
-    if (state === "still") {
+    console.log("click");
+    var state = $(this).parent.attr("data-state");
+    if (".data-state" === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
     } else {
