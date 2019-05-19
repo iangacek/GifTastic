@@ -20,6 +20,7 @@ $(document).ready(function () {
   // Adds additional buttons in search box
   $("#add-animal").on("click", function (event) {
     event.preventDefault();
+    console.log(event);
     var animal = $("#animal-input").val().trim();
     animals.push(animal);
     renderButtons();
@@ -54,10 +55,10 @@ $(document).ready(function () {
       });
   };
 
-  $(".gif").on("click", function () {
+  $("body").on("click", ".gif", function () {
     console.log("click");
-    var state = $(this).parent.attr("data-state");
-    if (".data-state" === "still") {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
     } else {
