@@ -54,7 +54,7 @@ $(document).ready(function () {
         }
       });
   };
-
+// On-click event to animate GIFs
   $("body").on("click", ".gif", function () {
     console.log("click");
     var state = $(this).attr("data-state");
