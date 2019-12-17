@@ -17,6 +17,8 @@ To run this application, simply navigate to:
 
 After loading the website, pre-configured search options are available at the top which are clickable. To add an additional search term, enter a term/animal in the search field, and click "Add an Animal".
 
+Images are intially loaded in a paused state, but can be played/looped with a simple click of the image.
+
 ## Screenshots
 
 ## Technologies utilized in this application
